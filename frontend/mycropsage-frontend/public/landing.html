@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyCropSage | India's First AI-Powered Multilingual Agro Assistant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #c6ffdd, #fbd786, #f7797d);
+      color: #042a2b;
+      overflow-x: hidden;
+    }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 2px 25px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      transition: 0.4s ease;
+    }
+
+    header:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .logo-area {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #064420;
+      text-shadow: 0 0 10px rgba(6, 68, 32, 0.3);
+    }
+
+    .badge {
+      font-size: 0.8rem;
+      color: #ffffff;
+      background: linear-gradient(90deg, #2d6a4f, #40916c, #52b788);
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-top: 5px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .badge::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.5);
+      transform: skewX(-30deg);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% { left: -100%; }
+      50% { left: 100%; }
+      100% { left: 100%; }
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #042a2b;
+      transition: 0.3s;
+      font-size: 1rem;
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #2d6a4f;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: #1b4332;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(circle at 20% 80%, #ffffff80 0%, transparent 70%);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 150%;
+      height: 150%;
+      background: conic-gradient(from 0deg, #d8f3dc, #b7e4c7, #95d5b2, #74c69d, #52b788, #40916c, #2d6a4f, #1b4332, #081c15, #b7e4c7);
+      animation: rotate 12s linear infinite;
+      z-index: -2;
+      opacity: 0.3;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .particle {
+      position: absolute;
+      background: rgba(82, 183, 136, 0.8);
+      border-radius: 50%;
+      animation: float 12s infinite ease-in-out;
+      z-index: -1;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-60px) scale(1.2); }
+      100% { transform: translateY(0) scale(1); }
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: #042a2b;
+      text-shadow: 0 0 12px rgba(4, 42, 43, 0.3);
+      margin-bottom: 1rem;
+    }
+
+    .typewriter {
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid #042a2b;
+      animation: typing 4s steps(40, end), blink .7s step-end infinite;
+      display: inline-block;
+    }
+
+    @keyframes typing { from { width: 0 } to { width: 100% } }
+    @keyframes blink { 50% { border-color: transparent } }
+
+    .hero p {
+      max-width: 700px;
+      line-height: 1.6;
+      color: #063e31;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      animation: fadeIn 2s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn { to { opacity: 1 } }
+
+    .get-started {
+      background: linear-gradient(90deg, #2d6a4f, #52b788);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 14px 36px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(45, 106, 79, 0.6);
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+
+    .get-started:hover {
+      transform: scale(1.07);
+      background: linear-gradient(90deg, #1b4332, #40916c);
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(82, 183, 136, 0.6); }
+      70% { box-shadow: 0 0 0 15px rgba(82, 183, 136, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(82, 183, 136, 0); }
+    }
+
+    /* WHY SECTION */
+    .why {
+      background: #f8fff9;
+      text-align: center;
+      padding: 80px 10%;
+    }
+
+    .why h2 {
+      font-size: 2.3rem;
+      color: #064420;
+      margin-bottom: 20px;
+    }
+
+    .why p {
+      color: #333;
+      max-width: 900px;
+      margin: auto;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    /* FEATURES */
+    .features {
+      padding: 100px 10%;
+      background: #ffffffc2;
+      text-align: center;
+    }
+
+    .features h2 {
+      font-size: 2.3rem;
+      margin-bottom: 50px;
+      color: #064420;
+      position: relative;
+    }
+
+    .features h2::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: #52b788;
+      margin: 10px auto;
+      border-radius: 2px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 20px;
+      padding: 25px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      transition: 0.4s;
+      transform: translateY(40px);
+      opacity: 0;
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(45, 106, 79, 0.2);
+    }
+
+    .card h3 {
+      color: #1b4332;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #333;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #2d6a4f;
+      color: #fff;
+    }
+
+    @media(max-width:768px) {
+      header { flex-direction: column; gap: 10px; padding: 1rem; }
+      nav ul { gap: 1rem; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero p { font-size: 1rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo-area">
+      <div class="logo">🌾 MyCropSage</div>
+      <div class="badge">India’s First – AI-Driven Multilingual Crop Assistant</div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <h1 class="typewriter">Empowering Farmers with Green Intelligence 🌱</h1>
+    <p>
+      Harnessing Artificial Intelligence and Multilingual NLP to detect crop diseases, recommend remedies,
+      and connect farmers with local agro-stores in real time.
+    </p>
+    <button class="get-started" onclick="window.location.href='http://localhost:3000'">🚀 Get Started</button>
+
+  </section>
+
+  <section id="why" class="why">
+    <h2>🇮🇳 Why MyCropSage is India’s First</h2>
+    <p>
+      MyCropSage stands as the <b>first AI-powered multilingual agro-assistant in India</b> that blends
+      <b>Natural Language Understanding, Real-time Voice Recognition, and Geo-based Support</b>.
+      Unlike existing agricultural apps, it enables farmers to <b>speak naturally in Hindi, Marathi, or English</b>
+      to describe problems — the system then <b>translates, diagnoses</b> using advanced AI models like
+      <b>BERT multilingual transformers</b>, and instantly <b>recommends actionable remedies</b> while locating
+      nearby agro-stores for assistance. It bridges the gap between <b>technology and accessibility</b>,
+      empowering every farmer, regardless of language barriers.
+    </p>
+  </section>
+
+  <section id="features" class="features">
+    <h2>Our Intelligent Capabilities</h2>
+    <div class="feature-grid">
+      <div class="card"><h3>🧠 Smart Crop Diagnosis</h3><p>AI detects diseases instantly using multilingual BERT and rule-based fusion.</p></div>
+      <div class="card"><h3>🎙 Voice Interaction</h3><p>Talk naturally — MyCropSage listens, analyzes, and replies intelligently.</p></div>
+      <div class="card"><h3>🌍 Multilingual Support</h3><p>Fluent in English, Hindi, and Marathi to empower every farmer.</p></div>
+      <div class="card"><h3>📍 Nearby Assistance</h3><p>Find trusted agro-stores near you for immediate action.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 MyCropSage | India’s First AI Agro Assistant 🌾</p>
+  </footer>
+
+  <script>
+    // Animate feature cards
+    const cards = document.querySelectorAll('.card');
+    window.addEventListener('scroll', () => {
+      const trigger = window.innerHeight * 0.85;
+      cards.forEach(card => {
+        const top = card.getBoundingClientRect().top;
+        if (top < trigger) card.classList.add('visible');
+      });
+    });
+
+    // Floating particles
+    const hero = document.querySelector('.hero');
+    for (let i = 0; i < 20; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      particle.style.width = particle.style.height = Math.random() * 8 + 4 + 'px';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.top = Math.random() * 100 + '%';
+      particle.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      hero.appendChild(particle);
+    }
+
+    // 🚀 Redirect to login page
+    function goToLogin() {
+      window.location.href = "login.html";
+    }
+  </script>
+
+</body>
+</html>

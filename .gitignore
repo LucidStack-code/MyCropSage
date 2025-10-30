@@ -1,0 +1,18 @@
+# Node dependencies
+node_modules/
+build/
+dist/
+
+# Python virtual environments and cache
+venv/
+__pycache__/
+*.pyc
+*.sqlite3
+
+# System/IDE files
+.vscode/
+.idea/
+.DS_Store
+
+# Environment or secret files
+.env
